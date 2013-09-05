@@ -1,0 +1,27 @@
+{
+    "name": "weblint",
+    "version": "0.0.1",
+    "description": "totoro hudson plugin",
+    "homepage": "https://github.com/totorojs/totoro-hudson",
+    "keywords": [
+        "front end",
+        "unit testing",
+        "automation"
+    ],
+    "author": "kangpangpang <kangpangpang@gmail.com>",
+    "engines": {
+        "node": ">= 0.10.1"
+    },
+    "dependencies": {
+        "async": "0.2.7",
+        "when": "2.0.1",
+        "shelljs": "0.2.2"
+    },
+    "bin": {
+        "weblint": "./bin/weblint.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:totorojs/totoro-hudson.git"
+    }
+}
