@@ -35,11 +35,12 @@ async.eachSeries(args, function(arg, cb) {
 })
 
 function output(name, result, filename) {
-  mkdir('-p', '../target')
+  var target = cwd + '/target/'
+  mkdir('-p', target)
   if (filename) {
     name = filename
   } else {
     name = name + '.txt'
   }
-  fs.writeFileSync('../target/' + name, result)
+  fs.writeFileSync(target + name, result)
 }
