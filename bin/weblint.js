@@ -9,6 +9,11 @@ var async = require('async');
 var args = process.argv.slice(2);
 var cwd = process.cwd()
 
+if (args.indexOf('--version') > -1 || args.indexOf('-V') > -1 || args.indexOf('-v') > -1) {
+    console.info(require('../package.json').version)
+    process.exit(0)
+}
+
 console.info('working directory:' + cwd)
 
 async.eachSeries(args, function(arg, cb) {
