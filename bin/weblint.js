@@ -8,11 +8,9 @@ var async = require('async');
 
 var args = process.argv.slice(2);
 var cwd = process.cwd()
+var version = require('../package.json').version
 
-if (args.indexOf('--version') > -1 || args.indexOf('-V') > -1 || args.indexOf('-v') > -1) {
-    console.info(require('../package.json').version)
-    process.exit(0)
-}
+console.info('weblint version: ' + version)
 
 console.info('working directory:' + cwd)
 
