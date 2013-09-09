@@ -9,30 +9,28 @@ var async = require('async');
 var args = process.argv.slice(2);
 var cwd = process.cwd()
 
+console.info('working directory:' + cwd)
+
 async.eachSeries(args, function(arg, cb) {
   try {
     var plugin = require('../lib/' + arg)
     plugin(cwd, function(err, result, filename) {
       output(arg, result, filename)
-      if (!err) {
-        cb(err)
-      } else {
-        cb()
-      }
+      cb(err, result)
     })
   }catch(e) {
-    console.error('error plugin ' + arg, e)
-    cb('load plugin ' + arg + ' error!')
+    cb('Not found plugin ' + arg + '!')
   }
-
 }, function(err) {
     if (err) {
-      console.info('totoro check error!' + err)
+      console.info('totoro check error: ' + err)
       process.exit(1)
     } else {
+      console.info('weblint check succ!')
       process.exit(0)
     }
 })
+
 
 function output(name, result, filename) {
   var target = cwd + '/target/'
