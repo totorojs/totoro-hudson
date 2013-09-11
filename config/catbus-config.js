@@ -18,7 +18,8 @@ var config = {
   }, 
   ignore: [
     '\\.html',
-    '\\.htm'
+    '\\.htm',
+    '\\.txt'
   ],
   require: [
     'catbus-html-typos'
