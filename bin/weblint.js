@@ -22,7 +22,8 @@ async.eachSeries(args, function(arg, cb) {
       cb(err, result)
     })
   }catch(e) {
-    cb('Not found plugin ' + arg + '!')
+    // cb('Not found plugin ' + arg + '!')
+    cb(e.message)
   }
 }, function(err) {
     if (err) {
