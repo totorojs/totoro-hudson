@@ -1,12 +1,12 @@
 var config = {
   options: {
-    "html-doctype": true,
+    "html-doctype": false,
     "html-hard-code": true, 
     "html-https-warning": true, 
     "html-id-duplicate": false, 
     "html-inline-script": true,
     "html-meta-charset": false, 
-    "html-quote-value": true,
+    "html-quote-value": false,
     "html-tag-close": false, 
     "html-unsafe-resource": true, 
     "js-bitwise": true,
@@ -19,7 +19,8 @@ var config = {
   ignore: [
     '\\.html',
     '\\.htm',
-    '\\.txt'
+    '\\.txt',
+    '\\/\\w*\\-?dalgen'
   ],
   require: [
     'catbus-html-typos'
