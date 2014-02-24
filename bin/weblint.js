@@ -15,9 +15,18 @@ console.info('weblint version: ' + version)
 console.info('working directory:' + cwd)
 
 async.eachSeries(args, function(arg, cb) {
+  var plugin;
+  var opts;
   try {
-    var plugin = require('../lib/' + arg)
-    plugin(cwd, function(err, result, filename) {
+    if (arg.indexOf('=') > -1) {
+      arg = arg.split('=');
+      plugin = arg[0];
+      opts = arg[1];
+    } else {
+      plugin = arg;
+    }
+    plugin = require('../lib/' + plugin)
+    plugin(cwd, opts, function(err, result, filename) {
       output(arg, result, filename)
       cb(err, result)
     })
