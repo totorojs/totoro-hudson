@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-'use strict'
+'use strict';
 
 var fs = require('fs');
 var path = require('path');
 var async = require('async');
+var shelljs = require('shelljs');
 
 var args = process.argv.slice(2);
 var cwd = process.cwd()
@@ -12,22 +13,22 @@ var version = require('../package.json').version
 
 console.info('weblint version: ' + version)
 
-console.info('working directory:' + cwd)
+var plugins = [];
+var options = [];
+args.forEach(function(arg) {
+  if (/^--/.test(arg)) {
+    options.push(arg);
+  } else {
+    plugins.push(arg)
+  }
+});
 
-async.eachSeries(args, function(arg, cb) {
-  var plugin;
-  var opts;
+console.info('working directory:' + cwd)
+async.eachSeries(plugins, function(plugin, cb) {
   try {
-    if (arg.indexOf('=') > -1) {
-      arg = arg.split('=');
-      plugin = arg[0];
-      opts = arg[1];
-    } else {
-      plugin = arg;
-    }
     plugin = require('../lib/' + plugin)
-    plugin(cwd, opts, function(err, result, filename) {
-      output(arg, result, filename)
+    plugin(cwd, options, function(err, result, filename) {
+      output(plugin, result, filename)
       cb(err, result)
     })
   }catch(e) {
@@ -47,7 +48,7 @@ async.eachSeries(args, function(arg, cb) {
 
 function output(name, result, filename) {
   var target = cwd + '/target/'
-  mkdir('-p', target)
+  shelljs.mkdir('-p', target)
   if (filename) {
     name = filename
   } else {
