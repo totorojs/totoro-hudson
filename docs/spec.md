@@ -8,7 +8,7 @@
 * logRotator? 构建日志保存规则
 * jdk? jdk 版本
 * label? 机器分配规则
-* scm 版本控制信息. type(url) | git('git@gitlab.alibaba-inc.com/test.git')
+* scm 版本控制信息. type(url) | git('git@gitlab.******.com/test.git')
 * triggers? 触发规则 cron("35 23 * * *")
 * steps 脚本执行 shell('weblint totoro')
 * 邮件发布信息. emails
